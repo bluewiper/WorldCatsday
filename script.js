@@ -5,6 +5,14 @@ const cats = [
   { img: "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg", desc: "당신은 귀여운 검은냥!" }
 ];
 
+function getSeed(str) {
+  let sum = 0;
+  for (let i = 0; i < str.length; i++) {
+    sum += str.charCodeAt(i);
+  }
+  return sum;
+}
+
 function showResult() {
   const name = document.getElementById("name").value.trim();
   const birth = document.getElementById("birth").value;
@@ -14,7 +22,7 @@ function showResult() {
     return;
   }
 
-  const seed = (name + birth).length;
+  const seed = getSeed(name + birth);
   const cat = cats[seed % cats.length];
 
   document.getElementById("catImage").src = cat.img;
